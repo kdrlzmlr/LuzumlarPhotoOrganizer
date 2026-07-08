@@ -41,7 +41,7 @@
         </Grid>
 
         <CheckBox Name="copyormove">
-            Copy instead of Move
+            Move (Do not copy)
         </CheckBox>
 
         <CheckBox Name="chkDuplicates">
