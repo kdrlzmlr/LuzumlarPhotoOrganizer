@@ -1,0 +1,70 @@
+<Window
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    x:Class="LuzumlarPhotoOrganizer.MainWindow"
+    Width="700"
+    Height="500"
+    Title="Lzmlr Photo Organizer">
+
+    <StackPanel Margin="20" Spacing="10">
+
+        <TextBlock Text="Source Folder"/>
+
+        <Grid ColumnDefinitions="*,Auto">
+
+            <TextBox Name="SourceTextBox"/>
+
+            <Button
+                Grid.Column="1"
+                Name="btnBrowseSource"
+                Margin="10,0,0,0"
+                Click="BrowseSource_Click">
+                Browse
+            </Button>
+
+        </Grid>
+
+        <TextBlock Text="Destination Folder"/>
+
+        <Grid ColumnDefinitions="*,Auto">
+
+            <TextBox Name="TargetTextBox"/>
+
+            <Button
+                Grid.Column="1"
+                Name="btnBrowseDestination"
+                Margin="10,0,0,0"
+                Click="BrowseTarget_Click">
+                Browse
+            </Button>
+
+        </Grid>
+
+        <CheckBox Name="copyormove">
+            Copy instead of Move
+        </CheckBox>
+
+        <CheckBox Name="chkDuplicates">
+            Remove duplicates
+        </CheckBox>
+
+        <ProgressBar
+            Name="ProgressBar"
+            Height="20"
+            Minimum="0"
+            Maximum="100"/>
+
+        <TextBlock
+            Name="StatusText"
+            Text="Ready"/>
+
+        <Button
+            Name="StartButton"
+            Height="40"
+            Click="Start_Click">
+            ORGANIZE
+        </Button>
+
+    </StackPanel>
+
+</Window>
