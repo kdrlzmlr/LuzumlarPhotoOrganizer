@@ -202,6 +202,7 @@ public partial class MainWindow : Window
         int duplicates = duplicateFiles.Count;
         // Cache UI value BEFORE parallel work
         bool moveFiles = copyormove.IsChecked == true;
+        bool removeDuplicates = chkDuplicates.IsChecked == true;
 
         await Task.Run(() =>
         {
@@ -242,16 +243,24 @@ public partial class MainWindow : Window
                     Interlocked.Increment(ref completedOperations);
                     UpdateProgressThrottled(moveFiles ? "Moving" : "Copying");
 
+
                     foreach (var dupePath in group.Skip(1))
                     {
                         var dupeDest = GetUniquePath(Path.Combine(dupeDir, Path.GetFileName(dupePath)));
 
                         try
                         {
-                            if (moveFiles)
-                                File.Move(dupePath, dupeDest);
+                            if (removeDuplicates)
+                            {
+                                File.Delete(dupePath);
+                            }
                             else
-                                File.Copy(dupePath, dupeDest);
+                            {
+                                if (moveFiles)
+                                    File.Move(dupePath, dupeDest);
+                                else
+                                    File.Copy(dupePath, dupeDest);
+                            }
                         }
                         catch (Exception ex)
                         {
